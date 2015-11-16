@@ -44,23 +44,22 @@ function ripById($id){
 	$pathToDetails = 'http://www.beheshtezahra.ir/Default.aspx?tabid=92&ctl=SearchDetails&mid=653&srid=' . $id;
 	
 	$output = scraperwiki::scrape($pathToDetails);
-	
-	$firstnamepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblNameBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
-	$surnamepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblLastNameBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
-	$fathernamepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblFatherNameBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
-	$birthdatepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblBirthDateBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
-	$deathdatepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDafnDateBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
-	$deathplacepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDeastTownshipTitle_0" style="font-weight:bold;">(.*)<\/span>/smiU';
-	$graveplacepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDafnPlace_0" style="font-weight:bold;">(.*)<\/span>/smiU';
+	$firstnamepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblNameBound_0"><b>(.*)<\//smiU';
+	$surnamepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblLastNameBound_0"><b>(.*)<\//smiU';
+	$fathernamepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblFatherNameBound_0"><b>(.*)<\//smiU';
+	$birthdatepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblBirthDateBound_0"><b>(.*)<\//smiU';
+	$deathdatepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDafnDateBound_0"><b>(.*)<\//smiU';
+	$deathplacepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDeastTownshipTitle_0"><b>(.*)<\//smiU';
+	$graveplacepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDafnPlace_0"><b>(.*)<\//smiU';
 	
 	
 	//$output = mb_convert_encoding($output, 'UTF-8', mb_detect_encoding($output, 'UTF-8, ISO-8859-1', true));
 		
         preg_match($firstnamepattern, $output, $temp);
-      	var_dump($output) . "\n";
-	    
-        
         $firstname = (isset($temp[0])) ? $temp[0] : '';
+      	print $firstname . "\n";        
+      	$firstname = (isset($temp[1])) ? $temp[1] : '';
+      	print $firstname . "\n";        
         
         preg_match($surnamepattern, $output, $temp);
         $surname = (isset($temp[1])) ? $temp[1] : '';
