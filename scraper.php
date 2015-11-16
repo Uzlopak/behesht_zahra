@@ -29,7 +29,7 @@
 
 <?php
 require 'scraperwiki.php';
-for ($id = 254129; $id <= 254129; $id++) {
+for ($id = 1; $id <= 1700000; $id++) {
 	print $id;
   if (entryExists($id))
   {
@@ -86,7 +86,7 @@ function ripById($id){
 	                          'firstname' => $firstname,
 	                          'surname' => $surname, 
 	                          'fathername' => $fathername, 
-	                          'birthdate' => $birtdate, 
+	                          'birthdate' => $birthdate, 
 	                          'deathdate' => $deathdate,
 	                          'deathplace' => $deathplace, 
 	                          'graveplace' => $graveplace));
