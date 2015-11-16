@@ -30,15 +30,18 @@
 <?php
 require 'scraperwiki.php';
 for ($id = 1; $id <= 10; $id++) {
+	print $id;
   if (entryExists($id))
   {
-    print $id . " skipped";
+    print  " skip";
   }
   else
   {
-    print $id . " scrape";
+    print " scrape";
     ripById($id);
+    print "d";
   }
+  print "\n"
 }
 function ripById($id){
 	$pathToDetails = 'http://www.beheshtezahra.ir/Default.aspx?tabid=92&ctl=SearchDetails&mid=653&srid=' . $id;
