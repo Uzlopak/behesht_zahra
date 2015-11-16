@@ -30,6 +30,7 @@
 <?php
 require 'scraperwiki.php';
 for ($id = 1; $id <= 1700000; $id++) {
+	sleep(3);
 	print $id;
   if (entryExists($id))
   {
