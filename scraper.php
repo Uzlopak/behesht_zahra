@@ -95,7 +95,6 @@ function entryExists($id){
 	$result = false;
 	// Set total number of rows
 	$recordSet = scraperwiki::select("id from data where id ='". $id . "'");
-	var_dump($recordSet);
 	if (!empty($recordSet[0]['id'])) {
 		$result = true;
 	} 
