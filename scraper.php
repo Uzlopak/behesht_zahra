@@ -42,7 +42,7 @@ for ($id = 3820; $id <= 1700000; $id++) {
     ripById($id);
     print "scraped";
   }
-  print "\n";
+  print ",";
 }
 function ripById($id){
 	$pathToDetails = 'http://www.beheshtezahra.ir/Default.aspx?tabid=92&ctl=SearchDetails&mid=653&srid=' . $id;
