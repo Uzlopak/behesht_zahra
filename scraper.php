@@ -37,9 +37,8 @@ for ($id = 1; $id <= 1700000; $id++) {
   }
   else
   {
-    print " scrap.";
     ripById($id);
-    print ".ed";
+    print "scraped";
   }
   print "\n";
 }
@@ -55,8 +54,6 @@ function ripById($id){
 	$deathplacepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDeastTownshipTitle_0"><b>(.*)<\//smiU';
 	$graveplacepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDafnPlace_0"><b>(.*)<\//smiU';
 	
-	var_dump($output);
-	//$output = mb_convert_encoding($output, 'UTF-8', mb_detect_encoding($output, 'UTF-8, ISO-8859-1', true));
 		
         preg_match($firstnamepattern, $output, $temp);
       	$firstname = (isset($temp[1])) ? $temp[1] : '';
