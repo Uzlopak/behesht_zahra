@@ -38,7 +38,7 @@ for ($id = 1; $id <= 300000; $id++) {
   }
   else
   {
-  //	sleep(2);
+  	sleep(1);
     ripById($id);
     print "scraped";
   }
