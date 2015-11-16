@@ -29,7 +29,7 @@
 
 <?php
 require 'scraperwiki.php';
-for ($id = 1; $id <= 10; $id++) {
+for ($id = 1; $id <= 1; $id++) {
 	print $id;
   if (entryExists($id))
   {
@@ -94,12 +94,10 @@ function ripById($id){
 function entryExists($id){
 	$result = false;
 	// Set total number of rows
-	if ($result = scraperwiki::select("select id from data where 'id' ='". $id . "'")) 
-	{
-		var_dump($result);
-		if (!empty($result[0]['id'])) {
-			$result = true;
-		} 
-	}
+	$recordSet = scraperwiki::select("select id from data where 'id' ='". $id . "'")) 
+	var_dump($recordSet);
+	if (!empty($recordSet[0]['id'])) {
+		$result = true;
+	} 
 	return $result;
 }
