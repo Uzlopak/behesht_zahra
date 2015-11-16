@@ -37,9 +37,9 @@ for ($id = 1; $id <= 17000000; $id++) {
   }
   else
   {
-    print " scrape";
+    print " scrap.";
     ripById($id);
-    print "d";
+    print ".ed";
   }
   print "\n";
 }
