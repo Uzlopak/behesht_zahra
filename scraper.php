@@ -55,7 +55,7 @@ function ripById($id){
 	$deathplacepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDeastTownshipTitle_0"><b>(.*)<\//smiU';
 	$graveplacepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDafnPlace_0"><b>(.*)<\//smiU';
 	
-	
+	var_dump($output);
 	//$output = mb_convert_encoding($output, 'UTF-8', mb_detect_encoding($output, 'UTF-8, ISO-8859-1', true));
 		
         preg_match($firstnamepattern, $output, $temp);
@@ -93,6 +93,7 @@ function ripById($id){
 }
 function entryExists($id){
 	$result = false;
+	return false;
 	// Set total number of rows
 	$recordSet = scraperwiki::select("id from data where id ='". $id . "'");
 	if (!empty($recordSet[0]['id'])) {
