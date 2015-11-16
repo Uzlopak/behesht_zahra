@@ -43,8 +43,6 @@ for ($id = 1; $id <= 10; $id++) {
 function ripById($id){
 	$pathToDetails = 'http://www.beheshtezahra.ir/Default.aspx?tabid=92&ctl=SearchDetails&mid=653&srid=' . $id;
 	
-	$matchesBhid;
-	
 	$output = scraperwiki::scrape($pathToDetails);
 	
 	
@@ -57,7 +55,7 @@ function ripById($id){
 	$graveplacepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDafnPlace_0" style="font-weight:bold;">(.*)<\/span>/smiU';
 	
 	
-	$output = mb_convert_encoding($output, 'UTF-8', mb_detect_encoding($output, 'UTF-8, ISO-8859-1', true));
+	//$output = mb_convert_encoding($output, 'UTF-8', mb_detect_encoding($output, 'UTF-8, ISO-8859-1', true));
 		
         preg_match($firstnamepattern, $output, $temp);
         $firstname = (isset($temp[1])) ? $temp[1] : '';
@@ -86,7 +84,7 @@ function ripById($id){
 	                          'id'      => $id,
 	                          'firstname' => $firstname,
 	                          'surname' => $surname, 
-	                          'fathername' => $fatnername, 
+	                          'fathername' => $fathername, 
 	                          'birthdate' => $birtdate, 
 	                          'deathdate' => $deathdate,
 	                          'deathplace' => $deathplace, 
