@@ -90,14 +90,13 @@ function ripById($id){
 	                          'deathdate' => $deathdate,
 	                          'deathplace' => $deathplace, 
 	                          'graveplace' => $graveplace));
-      	print $firstname . "\n";
-	    
 }
 function entryExists($id){
 	$result = false;
 	// Set total number of rows
-	if ($result = scraperwiki::select("select id from data where id ='". $id . "'")) 
+	if ($result = scraperwiki::select("select id from data where 'id' ='". $id . "'")) 
 	{
+		var_dump($result);
 		if (!empty($result[0]['id'])) {
 			$result = true;
 		} 
