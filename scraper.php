@@ -93,7 +93,6 @@ function ripById($id){
 }
 function entryExists($id){
 	$result = false;
-	return false;
 	// Set total number of rows
 	$recordSet = scraperwiki::select("id from data where id ='". $id . "'");
 	if (!empty($recordSet[0]['id'])) {
