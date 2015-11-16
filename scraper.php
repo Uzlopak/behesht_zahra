@@ -25,3 +25,82 @@
 // called "data.sqlite" in the current working directory which has at least a table
 // called "data".
 ?>
+
+
+<?php
+require 'scraperwiki.php';
+for ($id = 1; $id <= 10; $id++) {
+  if (entryExists($id))
+  {
+    print $id . " skipped";
+  }
+  else
+  {
+    print $id . " scrape";
+    ripById($id);
+  }
+}
+function ripById($id){
+	$pathToDetails = 'http://www.beheshtezahra.ir/Default.aspx?tabid=92&ctl=SearchDetails&mid=653&srid=' . $id;
+	
+	$matchesBhid;
+	
+	$output = scraperwiki::scrape($pathToDetails);
+	
+	
+	$firstnamepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblNameBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
+	$surnamepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblLastNameBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
+	$fathernamepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblFatherNameBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
+	$birthdatepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblBirthDateBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
+	$deathdatepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDafnDateBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
+	$deathplacepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDeastTownshipTitle_0" style="font-weight:bold;">(.*)<\/span>/smiU';
+	$graveplacepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblDafnPlace_0" style="font-weight:bold;">(.*)<\/span>/smiU';
+	
+	
+	$output = mb_convert_encoding($output, 'UTF-8', mb_detect_encoding($output, 'UTF-8, ISO-8859-1', true));
+		
+        preg_match($firstnamepattern, $output, $temp);
+        $firstname = (isset($temp[1])) ? $temp[1] : '';
+        
+        preg_match($surnamepattern, $output, $temp);
+        $surname = (isset($temp[1])) ? $temp[1] : '';
+        
+        preg_match($fathernamepattern, $output, $temp);
+        $fathername = (isset($temp[1])) ? $temp[1] : '';
+        
+        preg_match($birthdatepattern, $output, $temp);
+        $birthdate = (isset($temp[1])) ? $temp[1] : '';
+        
+        preg_match($deathdatepattern, $output, $temp);
+        $deathdate = (isset($temp[1])) ? $temp[1] : '';
+        
+        preg_match($deathplacepattern, $output, $temp);
+        $deathplace = (isset($temp[1])) ? $temp[1] : '';
+        
+        preg_match($graveplacepattern, $output, $temp);
+        $graveplace = (isset($temp[1])) ? $temp[1] : '';
+        
+        
+	scraperwiki::save_sqlite(array('data'), 
+	                    array(
+	                          'id'      => $id,
+	                          'firstname' => $firstname,
+	                          'surname' => $surname, 
+	                          'fathername' => $fatnername, 
+	                          'birthdate' => $birtdate, 
+	                          'deathdate' => $deathdate,
+	                          'deathplace' => $deathplace, 
+	                          'graveplace' => $graveplace));
+      	print $id . "\n";
+	    
+}
+function entryExists($id){
+	result = false
+	// Set total number of rows
+	if ($result = scraperwiki::select("select id from data where id ='". $id . "'")) {
+		if (!empty($result[0]['id'])) {
+			$result = true;
+		} 
+	}
+	return $result;
+}
