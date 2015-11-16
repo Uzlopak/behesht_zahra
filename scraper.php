@@ -45,7 +45,6 @@ function ripById($id){
 	
 	$output = scraperwiki::scrape($pathToDetails);
 	
-	
 	$firstnamepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblNameBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
 	$surnamepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblLastNameBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
 	$fathernamepattern = '/<span id="dnn_ctr653_SearchDetails_dtlDetail_lblFatherNameBound_0" style="font-weight:bold;">(.*)<\/span>/smiU';
@@ -58,6 +57,9 @@ function ripById($id){
 	//$output = mb_convert_encoding($output, 'UTF-8', mb_detect_encoding($output, 'UTF-8, ISO-8859-1', true));
 		
         preg_match($firstnamepattern, $output, $temp);
+      	var_dump($temp) . "\n";
+	    
+        
         $firstname = (isset($temp[0])) ? $temp[0] : '';
         
         preg_match($surnamepattern, $output, $temp);
