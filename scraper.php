@@ -29,11 +29,11 @@
 
 <?php
 require 'scraperwiki.php';
-for ($id = 1; $id <= 1; $id++) {
+for ($id = 1; $id <= 17000000; $id++) {
 	print $id;
   if (entryExists($id))
   {
-    print  " skip";
+    print  " skipped";
   }
   else
   {
