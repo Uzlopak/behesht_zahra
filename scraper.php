@@ -29,7 +29,7 @@
 
 <?php
 require 'scraperwiki.php';
-for ($id = 1; $id <= 1; $id++) {
+for ($id = 1; $id <= 10; $id++) {
   if (entryExists($id))
   {
     print $id . " skipped";
@@ -56,10 +56,7 @@ function ripById($id){
 	//$output = mb_convert_encoding($output, 'UTF-8', mb_detect_encoding($output, 'UTF-8, ISO-8859-1', true));
 		
         preg_match($firstnamepattern, $output, $temp);
-        $firstname = (isset($temp[0])) ? $temp[0] : '';
-      	print $firstname . "\n";        
       	$firstname = (isset($temp[1])) ? $temp[1] : '';
-      	print $firstname . "\n";        
         
         preg_match($surnamepattern, $output, $temp);
         $surname = (isset($temp[1])) ? $temp[1] : '';
@@ -95,7 +92,6 @@ function ripById($id){
 }
 function entryExists($id){
 	$result = false;
-	return false;
 	// Set total number of rows
 	if ($result = scraperwiki::select("select id from data where id ='". $id . "'")) 
 	{
