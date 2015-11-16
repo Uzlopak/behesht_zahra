@@ -41,7 +41,7 @@ for ($id = 1; $id <= 10; $id++) {
     ripById($id);
     print "d";
   }
-  print "\n"
+  print "\n";
 }
 function ripById($id){
 	$pathToDetails = 'http://www.beheshtezahra.ir/Default.aspx?tabid=92&ctl=SearchDetails&mid=653&srid=' . $id;
