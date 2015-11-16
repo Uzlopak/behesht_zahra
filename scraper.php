@@ -57,7 +57,7 @@ function ripById($id){
 	//$output = mb_convert_encoding($output, 'UTF-8', mb_detect_encoding($output, 'UTF-8, ISO-8859-1', true));
 		
         preg_match($firstnamepattern, $output, $temp);
-      	var_dump($temp) . "\n";
+      	var_dump($output) . "\n";
 	    
         
         $firstname = (isset($temp[0])) ? $temp[0] : '';
