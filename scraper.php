@@ -29,8 +29,8 @@
 
 <?php
 require 'scraperwiki.php';
-for ($id = 2018; $id <= 1700000; $id++) {
-	sleep(3);
+
+for ($id = 1; $id <= 1700000; $id++) {
 	print $id;
   if (entryExists($id))
   {
@@ -38,6 +38,7 @@ for ($id = 2018; $id <= 1700000; $id++) {
   }
   else
   {
+  	sleep(3);
     ripById($id);
     print "scraped";
   }
@@ -93,9 +94,11 @@ function entryExists($id){
 	$result = false;
 	// Set total number of rows
 	try {
-	$recordSet = scraperwiki::select("id from data where id ='". $id . "'");
+	$recordSet = scraperwiki::select("* from data where id ='". $id . "'");
 	if (!empty($recordSet[0]['id'])) {
-		$result = true;
+		if ($recordSet[0]['firstname'] != "" and $recordSet[0]['surname'] != ""){
+			$result = true;	
+		}
 	} 
 	} catch (Exception $e) {
 	}
