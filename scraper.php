@@ -34,7 +34,9 @@ for ($id = 1; $id <= 300000; $id++) {
 	print $id;
   if (!entryExists($id))
   {
+    usleep(500000)
     ripById($id);
+    
     print "scraped";
   }
   print ",";
