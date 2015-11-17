@@ -34,7 +34,6 @@ for ($id = 1; $id <= 300000; $id++) {
 	print $id;
   if (!entryExists($id))
   {
-  	sleep(1);
     ripById($id);
     print "scraped";
   }
