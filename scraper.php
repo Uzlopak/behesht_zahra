@@ -1,7 +1,7 @@
+
 <?
 // This is a template for a PHP scraper on morph.io (https://morph.io)
 // including some code snippets below that you should find helpful
-
 // require 'scraperwiki.php';
 // require 'scraperwiki/simple_html_dom.php';
 //
@@ -18,7 +18,6 @@
 //
 // // An arbitrary query against the database
 // scraperwiki::select("* from data where 'name'='peter'")
-
 // You don't have to do things with the ScraperWiki library.
 // You can use whatever libraries you want: https://morph.io/documentation/php
 // All that matters is that your final data is written to an SQLite database
@@ -29,15 +28,26 @@
 
 <?php
 require 'scraperwiki.php';
-
 for ($id = 1; $id <= 300000; $id++) {
-  if (!entryExists($id))
-  {
-    usleep(500000);
-    ripById($id);
-    print $id;
+	$i = 1;
+	$delay = 250000;
+	  if (!validateEntry($id))
+	  {
+	  print $id . " try: ";
+	  while (!validateEntry($id))
+	  {
+	  	$delay = $delay + $i * 250000;
+	  	//limit to 5 secs
+	  	if ($delay > 5000000) {
+	  		$delay = 5000000;
+	  	}
+	    usleep($delay);
+	    ripById($id);
+	    print $i . ". ";
+	    $i++;
+	  }
+	  print " scraped\n";
   }
-  print ",";
 }
 function ripById($id){
 	$pathToDetails = 'http://www.beheshtezahra.ir/Default.aspx?tabid=92&ctl=SearchDetails&mid=653&srid=' . $id;
@@ -85,7 +95,7 @@ function ripById($id){
 	                          'deathplace' => $deathplace, 
 	                          'graveplace' => $graveplace));
 }
-function entryExists($id){
+function validateEntry($id){
 	$result = false;
 	// Set total number of rows
 	try {
