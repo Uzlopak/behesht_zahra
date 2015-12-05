@@ -58,7 +58,7 @@ for ($id = 1; $id <= 300000; $id++) {
 	    ripById($id);
 	    $i++;
 	  }
-	  print "! ";
+	  print "!";
   }
 }
 function ripById($id){
